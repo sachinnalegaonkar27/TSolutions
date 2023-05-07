@@ -1,0 +1,17 @@
+steps:
+# Build the container image
+- name: 'asia.gcr.io/cloud-builders/docker'
+#specify the name of the image
+  args: ['build', '-t', 'asia.gcr.io/$PROJECT_ID/IMAGE', '.']
+# Push the container image to Container Registry
+- name: 'asia.gcr.io/cloud-builders/docker'
+  args: ['push', 'asia.gcr.io/$PROJECT_ID/IMAGE']
+# Deploy container image to Cloud Run
+- name: 'asia.gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+#specify the service name and the region
+  args: ['run', 'deploy', 'SERVICE-NAME', '--image', 'asia.gcr.io/$PROJECT_ID/IMAGE', '--region', 'REGION',         
+        "--platform", "managed",
+        "--port", "8080"]
+images:
+- asia.gcr.io/$PROJECT_ID/IMAGE
