@@ -2,7 +2,7 @@
 FROM composer:2.3.10 as build
 WORKDIR /app
 COPY  . /var/www/html
-RUN composer install && composer dumpautoload
+RUN composer update && composer dumpautoload
 RUN php artisan optimize:clear
 
 # PHP Apache docker image for php8.1
