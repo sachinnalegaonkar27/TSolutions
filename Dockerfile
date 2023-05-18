@@ -1,7 +1,7 @@
 # Latest composer to get the dependencies
 FROM composer:2.3.10 as build
 WORKDIR /app
-COPY . /app
+COPY  . /var/www/html
 RUN composer install && composer dumpautoload
 RUN php artisan optimize:clear
 
