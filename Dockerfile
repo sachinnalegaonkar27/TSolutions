@@ -29,8 +29,10 @@ COPY --from=build /app /var/www/
 
 # Set appropriate permissions
 RUN chown -R www-data:www-data /var/www/
+RUN mkdir -p /var/www/storage/framework/{sessions,views,cache}
 RUN chmod -R 755 /var/www/storage
 RUN chmod -R 755 /var/www/bootstrap/cache
+
 # RUN chmod 777 -R /var/www/storage/
 # RUN chown -R www-data:www-data /var/www/
 
