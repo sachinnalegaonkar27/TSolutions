@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: php-container
-          image: gcr.io/treasure-384411/sail-8.2/app:latest
+          image: gcr.io/treasure-384411/tsolutions:v1.0
           ports:
             - containerPort: 80
 
