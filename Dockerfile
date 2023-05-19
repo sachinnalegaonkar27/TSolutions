@@ -28,8 +28,11 @@ EXPOSE 80
 COPY --from=build /app /var/www/
 
 # Set appropriate permissions
-RUN chmod 777 -R /var/www/storage/
 RUN chown -R www-data:www-data /var/www/
+RUN chmod -R 755 /var/www/storage
+RUN chmod -R 755 /var/www/bootstrap/cache
+# RUN chmod 777 -R /var/www/storage/
+# RUN chown -R www-data:www-data /var/www/
 
 # Configure Apache for Laravel
 COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
