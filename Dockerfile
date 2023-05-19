@@ -2,7 +2,10 @@
 FROM composer:2.3.10 as build
 WORKDIR /app
 COPY  . /var/www/html
-RUN composer install && composer dumpautoload
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# RUN composer install && composer dumpautoload
 RUN php artisan optimize:clear
 
 # PHP Apache docker image for php8.1
