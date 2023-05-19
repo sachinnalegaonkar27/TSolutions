@@ -6,7 +6,7 @@ COPY  . /var/www/html
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # RUN composer install && composer dumpautoload
-RUN php artisan optimize:clear
+
 
 # PHP Apache docker image for php8.1
 FROM php:8.1.0RC5-apache-buster
@@ -19,6 +19,7 @@ RUN docker-php-ext-install pdo pdo_mysql
 # Adds gd library support for different image upload
 RUN docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype
 RUN docker-php-ext-install gd
+RUN php artisan optimize:clear
 
 # Expose port 80 for web server
 EXPOSE 80
